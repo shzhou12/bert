@@ -925,6 +925,7 @@ def do_predict(estimator, test_df):
 
     label_list = [0, 1]
 
+
     if FLAGS.do_predict:
         test_df['casea'] = test_df.apply(lambda x: tokenization.convert_to_unicode(x['casea']), axis=1)
         test_df['caseb'] = test_df.apply(lambda x: tokenization.convert_to_unicode(x['caseb']), axis=1)
