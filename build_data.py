@@ -46,15 +46,15 @@ def build_case_pairs(rule_kcs_dict, kcs_case_group_result, customer_input, rule_
         try:
             kcs_list.append(rule_kcs_dict[rule])
         except:
-            print("rule {0} is not in the database", rule)
+            print("rule {0} is not in the database".format(rule))
 
     test_df = None
     for kcs in kcs_list:
         try:
-            tmp_df = kcs_case_group_result.get_group(kcs)[['resource_display_id__c', 'casenumber', 'subject']]
+            tmp_df = kcs_case_group_result.get_group(kcs)[['resource_display_id__c', 'casenumber', 'subject']].head(20)
             test_df = pd.concat([test_df, tmp_df])
         except:
-            print("kcs {0} has no case linked", kcs)
+            print("kcs {0} has no case linked".format(kcs))
     test_df.columns = ['caseb_kcs', 'caseb_id', 'caseb']
     test_df['casea_id'] = 'customer_input'
     test_df['casea'] = customer_input
